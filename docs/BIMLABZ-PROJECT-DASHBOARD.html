@@ -90,6 +90,9 @@
   dd { margin: 0; font-size: .9rem; }
   .row { display: grid; grid-template-columns: 5.5rem 1fr; gap: .35rem .75rem; }
   @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+  .note { margin: 0 0 .75rem; color: var(--muted); font-size: .88rem; }
+  ul.routines { margin: 0; padding-left: 1.1rem; font-size: .9rem; }
+  ul.routines li { margin-bottom: .4rem; }
   footer {
     margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);
     color: var(--muted); font-size: .8rem;
@@ -101,7 +104,7 @@
 <div class="shell">
 <nav aria-label="Projects">
   <h1>BIMLabz dashboard</h1>
-  <div class="meta">Updated 2026-09-27 00:09 IST<br/>Local file — not Drive</div>
+  <div class="meta">Updated 2026-09-27 02:15 IST<br/>Local file — not Drive</div>
 
   <div class="group-label">A · Zero spend</div>
   <a href="#deepharness"><span class="dot" style="background:var(--zero)"></span>DeepHarness</a>
@@ -112,9 +115,6 @@
   <a href="#evidenceloom"><span class="dot" style="background:var(--zero)"></span>EvidenceLoom</a>
   <a href="#portfolio"><span class="dot" style="background:var(--zero)"></span>Portfolio</a>
   <a href="#x-articles"><span class="dot" style="background:var(--zero)"></span>X harness articles</a>
-  <a href="#product-ops"><span class="dot" style="background:var(--zero)"></span>Product Ops</a>
-  <a href="#wikiskill"><span class="dot" style="background:var(--zero)"></span>WikiSkill</a>
-  <a href="#gepa"><span class="dot" style="background:var(--zero)"></span>GEPA</a>
 
   <div class="group-label">B · Needs money</div>
   <a href="#superlearn"><span class="dot" style="background:var(--money)"></span>SuperLearn AI</a>
@@ -135,6 +135,9 @@
   <a href="group-bimrag.html"><span class="dot" style="background:var(--zero)"></span>BIMRAG</a>
   <a href="group-linkedin-jobs.html"><span class="dot" style="background:var(--accent)"></span>LinkedIn Job Finder</a>
   <a href="group-x-account.html"><span class="dot" style="background:var(--accent)"></span>X Account Strategist</a>
+
+  <div class="group-label">Not projects</div>
+  <a href="#routines"><span class="dot" style="background:var(--muted)"></span>Internal routines</a>
 
 </nav>
 
@@ -194,7 +197,12 @@
       <dl>
         <div class="row"><dt>Done</dt><dd>Private <code>BIMLabz/bot-memory</code> craft blocks (happened / wrong / worked / next); standing post-ship habit.</dd></div>
         <div class="row"><dt>Blocked</dt><dd>Graph-database vision not started (see Group C).</dd></div>
-        <div class="row"><dt>Cost</dt><dd>Zero spend.</dd></div>
+        <div class="row"><dt>Research</dt><dd>
+          Two research notes live under BotMemory. They are not products.<br/>
+          <span id="wikiskill"><strong>WikiSkill</strong></span> — notes and a weekday S0 check routine; pack schema / fail-path slices landed on bot-memory. Later slices wait on measured closes and Tech Lead review where drafts remain.<br/>
+          <span id="gepa"><strong>GEPA</strong></span> — notes tied to the WikiSkill / bot-memory plans; weekday routine exists.
+        </dd></div>
+        <div class="row"><dt>Cost</dt><dd>Zero spend (including the research notes).</dd></div>
         <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
       </dl>
     </article>
@@ -239,39 +247,6 @@
         <div class="row"><dt>Done</dt><dd>Parts drafted; CEO redlines on several parts.</dd></div>
         <div class="row"><dt>Blocked</dt><dd>Ashish cut / publish.</dd></div>
         <div class="row"><dt>Cost</dt><dd>Zero spend to draft.</dd></div>
-        <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
-      </dl>
-    </article>
-
-    <article class="card" id="product-ops">
-      <h4>Product Ops</h4>
-      <div class="status done">ongoing</div>
-      <dl>
-        <div class="row"><dt>Done</dt><dd>Weekly ship checklists, freeze lists, open-source software gates.</dd></div>
-        <div class="row"><dt>Blocked</dt><dd>None structural.</dd></div>
-        <div class="row"><dt>Cost</dt><dd>Zero spend.</dd></div>
-        <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
-      </dl>
-    </article>
-
-    <article class="card" id="wikiskill">
-      <h4>WikiSkill</h4>
-      <div class="status">research only</div>
-      <dl>
-        <div class="row"><dt>Done</dt><dd>Notes + weekday S0 check routine; pack schema / fail-path slices on bot-memory where landed.</dd></div>
-        <div class="row"><dt>Blocked</dt><dd>Later slices gated on measured closes / Tech Lead where drafts remain.</dd></div>
-        <div class="row"><dt>Cost</dt><dd>Zero spend for notes.</dd></div>
-        <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
-      </dl>
-    </article>
-
-    <article class="card" id="gepa">
-      <h4>GEPA</h4>
-      <div class="status">research only</div>
-      <dl>
-        <div class="row"><dt>Done</dt><dd>Notes tied to WikiSkill / bot-memory plans; weekday routine exists.</dd></div>
-        <div class="row"><dt>Blocked</dt><dd>Not a product track.</dd></div>
-        <div class="row"><dt>Cost</dt><dd>Zero spend.</dd></div>
         <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
       </dl>
     </article>
@@ -424,6 +399,15 @@
         <div class="row"><dt>Updated</dt><dd>2026-09-27</dd></div>
       </dl>
     </article>
+  </section>
+
+  <!-- ========== NOT PROJECTS ========== -->
+  <section class="group" id="routines">
+    <h3><span class="pill">Not projects</span> Internal routines</h3>
+    <p class="note">Routines that support the projects above. They are not products and have no ship target.</p>
+    <ul class="routines">
+      <li id="product-ops"><strong>Product Ops</strong> — weekly ship checklists, freeze lists, and open-source gates applied across all projects. Ongoing. Zero spend. Updated 2026-09-27.</li>
+    </ul>
   </section>
 
   <footer>
