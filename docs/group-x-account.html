@@ -36,6 +36,16 @@ footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);color
 @media(max-width:700px){.toc{columns:1}}
 h2.section{margin-top:1.75rem}
 
+.filterbar{display:flex;flex-wrap:wrap;gap:.65rem 1rem;align-items:center;margin:0 0 1rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem}
+.tabs button{font:inherit;font-size:.84rem;font-weight:650;color:var(--text);background:var(--panel2);border:1px solid var(--border);border-radius:999px;padding:.38rem .75rem;cursor:pointer}
+.tabs button:hover{border-color:var(--accent)}
+.tabs button[aria-selected="true"]{background:var(--accent);color:#071018;border-color:var(--accent)}
+#post-search{flex:1;min-width:14rem;font:inherit;font-size:.9rem;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.48rem .75rem}
+#post-search:focus{outline:2px solid var(--accent);outline-offset:1px}
+article.post.is-hidden,.toc li.is-hidden{display:none}
+.nomatch{margin:0 0 1rem;padding:.65rem .85rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--muted)}
+
 </style></head><body>
 <div class="wrap">
   <div class="topnav">
@@ -61,13 +71,25 @@ h2.section{margin-top:1.75rem}
     <p class="muted" style="margin:.65rem 0 0;font-size:.9rem">Source of truth on disk: <code>article/harness-series/SERIES-STATUS.md</code> (dated 2026-09-17). Parts 1–2 live on X 2026-09-18. Parts 3–7 shaped, CEO pass, hold publish, waiting on Ashish to cut. Each part below is the full article, cover, and body figures.</p>
   </div>
 
+  <div class="filterbar">
+    <div class="tabs" role="tablist" aria-label="Post types">
+      <button type="button" role="tab" data-tab="all" aria-selected="true">All (47)</button>
+      <button type="button" role="tab" data-tab="series" aria-selected="false">Series (7)</button>
+      <button type="button" role="tab" data-tab="daily" aria-selected="false">Daily papers (13)</button>
+      <button type="button" role="tab" data-tab="dair" aria-selected="false">DAIR lessons (21)</button>
+      <button type="button" role="tab" data-tab="other" aria-selected="false">Other (6)</button>
+    </div>
+    <input id="post-search" type="search" placeholder="Search posts by content" aria-label="Search posts by content" autocomplete="off" />
+  </div>
+  <p id="nomatch" class="nomatch" hidden>No posts match.</p>
+
   <h2>Contents</h2>
   <div class="card"><ol class="toc">
-<li><a href="#part-1">Build a tiny coding-agent harness from scratch</a></li><li><a href="#part-2">Your own tiny harness - part 2</a></li><li><a href="#part-3">Interactive Allow in a tiny harness</a></li><li><a href="#part-4">JSONL resume in a tiny harness</a></li><li><a href="#part-5">Memory kinds in a tiny harness</a></li><li><a href="#part-6">Basic TUI in a tiny harness</a></li><li><a href="#part-7">Live OpenAI-compatible guest in a tiny harness</a></li><li><a href="#execcritic">ExecCritic daily harness draft (2026-09-17)</a></li><li><a href="#chase">CHASE / Bad Genius daily harness draft (2026-09-18)</a></li><li><a href="#fan">Fan et al. harness design daily draft (2026-09-21)</a></li><li><a href="#harness-zero">Harness-Zero daily harness draft (2026-09-22)</a></li><li><a href="#self-healing">Self-Healing Harness daily draft (2026-09-23)</a></li><li><a href="#clm">CLM daily draft (2026-10-01)</a></li><li><a href="#stitch">STITCH daily draft (2026-10-03) — Shape A lite THREAD</a></li><li><a href="#kv-streams">KV-streams thread draft (2026-10-03)</a></li><li><a href="#growing">Growing Harness daily draft (2026-09-24)</a></li><li><a href="#jaz">JAZ / Harness as a Language daily draft (2026-09-25)</a></li><li><a href="#compact-docs">Compact Documentation for Coding Agents daily draft (2026-09-28)</a></li><li><a href="#semnav">SemNav daily draft (2026-09-29)</a></li><li><a href="#mcp-errors">MCP error messages daily draft (2026-09-30) — teach-first + paper fact</a></li><li><a href="#00-gpt2">DAIR Harness Eng #01 - GPT-2 / Radford 2019 (V0 loop)</a></li><li><a href="#00b-fewshot">DAIR Harness Eng #02 - Brown 2020 few-shot</a></li><li><a href="#00c-cot">DAIR Harness Eng #03 - Wei 2022 Chain-of-Thought</a></li><li><a href="#01-toolformer">DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</a></li><li><a href="#02-react">DAIR Harness Eng #06 - ReAct (Yao et al. 2022)</a></li><li><a href="#03-intercode">DAIR Harness Eng #09 - InterCode (Yang et al. 2023)</a></li><li><a href="#04-self-refine">DAIR Harness Eng #07 - Self-Refine (Madaan et al. 2023)</a></li><li><a href="#05-reflexion">DAIR Harness Eng #08 - Reflexion (Shinn et al. 2023)</a></li><li><a href="#06-memgpt">DAIR Harness Eng #12 - MemGPT (Packer et al. 2023)</a></li><li><a href="#07-voyager">DAIR Harness Eng #11 - Voyager (Wang et al. 2023)</a></li><li><a href="#08-measuring-long-software">DAIR Harness Eng #21 - Measuring long software tasks (METR / Kwa et al.)</a></li><li><a href="#09-rlm">DAIR Harness Eng #13 - Recursive Language Models</a></li><li><a href="#10-multi-agent">DAIR Harness Eng #10 - Multi-Agent Collaboration</a></li><li><a href="#11-prime-agent">DAIR Harness Eng #19 - Prime Agent</a></li><li><a href="#12-webgpt">DAIR Harness Eng #04 - WebGPT</a></li><li><a href="#13-dspy">DAIR Harness Eng #14 - DSPy</a></li><li><a href="#14-gepa">DAIR Harness Eng #15 - GEPA</a></li><li><a href="#15a-darwin">DAIR Harness Eng #16 - Darwin Gödel Machine</a></li><li><a href="#15b-meta-harness">DAIR Harness Eng #17 - Meta-Harness</a></li><li><a href="#15c-continual">DAIR Harness Eng #18 - Continual Harness</a></li><li><a href="#16-openjarvis">DAIR Harness Eng #20 - OpenJarvis</a></li><li><a href="#capscope-2609.08371-human">CapScope — human-voice rewrite (CEO redline before Ashish cut)</a></li><li><a href="#capscope-2609.08371">CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</a></li><li><a href="#coding-agents-converged-2609.17394">Coding Agents Have Converged — CEO PASS — show Ashish for cut; do not post</a></li><li><a href="#harness-or-model-2609.11987">Harness or Model? — CEO PASS — show Ashish for cut; do not post</a></li><li><a href="#multi-harness-rl-2609.04518">Multi-Harness RL — CEO PASS — show Ashish for cut; do not post</a></li><li><a href="#ppt-sampling">PPT sampling (arXiv 2609.38104)</a></li>
+<li data-kind="series"><a href="#part-1">Build a tiny coding-agent harness from scratch</a></li><li data-kind="series"><a href="#part-2">Your own tiny harness - part 2</a></li><li data-kind="series"><a href="#part-3">Interactive Allow in a tiny harness</a></li><li data-kind="series"><a href="#part-4">JSONL resume in a tiny harness</a></li><li data-kind="series"><a href="#part-5">Memory kinds in a tiny harness</a></li><li data-kind="series"><a href="#part-6">Basic TUI in a tiny harness</a></li><li data-kind="series"><a href="#part-7">Live OpenAI-compatible guest in a tiny harness</a></li><li data-kind="daily"><a href="#execcritic">ExecCritic daily harness draft (2026-09-17)</a></li><li data-kind="daily"><a href="#chase">CHASE / Bad Genius daily harness draft (2026-09-18)</a></li><li data-kind="daily"><a href="#fan">Fan et al. harness design daily draft (2026-09-21)</a></li><li data-kind="daily"><a href="#harness-zero">Harness-Zero daily harness draft (2026-09-22)</a></li><li data-kind="daily"><a href="#self-healing">Self-Healing Harness daily draft (2026-09-23)</a></li><li data-kind="daily"><a href="#clm">CLM daily draft (2026-10-01)</a></li><li data-kind="daily"><a href="#stitch">STITCH daily draft (2026-10-03) — Shape A lite THREAD</a></li><li data-kind="daily"><a href="#kv-streams">KV-streams thread draft (2026-10-03)</a></li><li data-kind="daily"><a href="#growing">Growing Harness daily draft (2026-09-24)</a></li><li data-kind="daily"><a href="#jaz">JAZ / Harness as a Language daily draft (2026-09-25)</a></li><li data-kind="daily"><a href="#compact-docs">Compact Documentation for Coding Agents daily draft (2026-09-28)</a></li><li data-kind="daily"><a href="#semnav">SemNav daily draft (2026-09-29)</a></li><li data-kind="daily"><a href="#mcp-errors">MCP error messages daily draft (2026-09-30) — teach-first + paper fact</a></li><li data-kind="dair"><a href="#00-gpt2">DAIR Harness Eng #01 - GPT-2 / Radford 2019 (V0 loop)</a></li><li data-kind="dair"><a href="#00b-fewshot">DAIR Harness Eng #02 - Brown 2020 few-shot</a></li><li data-kind="dair"><a href="#00c-cot">DAIR Harness Eng #03 - Wei 2022 Chain-of-Thought</a></li><li data-kind="dair"><a href="#01-toolformer">DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</a></li><li data-kind="dair"><a href="#02-react">DAIR Harness Eng #06 - ReAct (Yao et al. 2022)</a></li><li data-kind="dair"><a href="#03-intercode">DAIR Harness Eng #09 - InterCode (Yang et al. 2023)</a></li><li data-kind="dair"><a href="#04-self-refine">DAIR Harness Eng #07 - Self-Refine (Madaan et al. 2023)</a></li><li data-kind="dair"><a href="#05-reflexion">DAIR Harness Eng #08 - Reflexion (Shinn et al. 2023)</a></li><li data-kind="dair"><a href="#06-memgpt">DAIR Harness Eng #12 - MemGPT (Packer et al. 2023)</a></li><li data-kind="dair"><a href="#07-voyager">DAIR Harness Eng #11 - Voyager (Wang et al. 2023)</a></li><li data-kind="dair"><a href="#08-measuring-long-software">DAIR Harness Eng #21 - Measuring long software tasks (METR / Kwa et al.)</a></li><li data-kind="dair"><a href="#09-rlm">DAIR Harness Eng #13 - Recursive Language Models</a></li><li data-kind="dair"><a href="#10-multi-agent">DAIR Harness Eng #10 - Multi-Agent Collaboration</a></li><li data-kind="dair"><a href="#11-prime-agent">DAIR Harness Eng #19 - Prime Agent</a></li><li data-kind="dair"><a href="#12-webgpt">DAIR Harness Eng #04 - WebGPT</a></li><li data-kind="dair"><a href="#13-dspy">DAIR Harness Eng #14 - DSPy</a></li><li data-kind="dair"><a href="#14-gepa">DAIR Harness Eng #15 - GEPA</a></li><li data-kind="dair"><a href="#15a-darwin">DAIR Harness Eng #16 - Darwin Gödel Machine</a></li><li data-kind="dair"><a href="#15b-meta-harness">DAIR Harness Eng #17 - Meta-Harness</a></li><li data-kind="dair"><a href="#15c-continual">DAIR Harness Eng #18 - Continual Harness</a></li><li data-kind="dair"><a href="#16-openjarvis">DAIR Harness Eng #20 - OpenJarvis</a></li><li data-kind="other"><a href="#capscope-2609.08371-human">CapScope — human-voice rewrite (CEO redline before Ashish cut)</a></li><li data-kind="other"><a href="#capscope-2609.08371">CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</a></li><li data-kind="other"><a href="#coding-agents-converged-2609.17394">Coding Agents Have Converged — CEO PASS — show Ashish for cut; do not post</a></li><li data-kind="other"><a href="#harness-or-model-2609.11987">Harness or Model? — CEO PASS — show Ashish for cut; do not post</a></li><li data-kind="other"><a href="#multi-harness-rl-2609.04518">Multi-Harness RL — CEO PASS — show Ashish for cut; do not post</a></li><li data-kind="other"><a href="#ppt-sampling">PPT sampling (arXiv 2609.38104)</a></li>
   </ol></div>
 
   <h2 class="section">Every post and article</h2>
-<article class="card post" id="part-1">
+<article class="card post" id="part-1" data-kind="series">
   <h3 class="post-title">Build a tiny coding-agent harness from scratch</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-series/PART-1.md</code></span></p>
   
@@ -211,7 +233,7 @@ messages.push({ role: &quot;tool&quot;, content: observation });</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-2">
+<article class="card post" id="part-2" data-kind="series">
   <h3 class="post-title">Your own tiny harness - part 2</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-series/PART-2.md</code></span></p>
   
@@ -344,7 +366,7 @@ node --experimental-strip-types src/cli.ts run-deny</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-3">
+<article class="card post" id="part-3" data-kind="series">
   <h3 class="post-title">Interactive Allow in a tiny harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-series/PART-3.md</code></span></p>
   
@@ -478,7 +500,7 @@ npm run human-allow</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-4">
+<article class="card post" id="part-4" data-kind="series">
   <h3 class="post-title">JSONL resume in a tiny harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-series/PART-4.md</code></span></p>
   
@@ -572,7 +594,7 @@ npm run resume</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-5">
+<article class="card post" id="part-5" data-kind="series">
   <h3 class="post-title">Memory kinds in a tiny harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-series/PART-5.md</code></span></p>
   
@@ -676,7 +698,7 @@ npm run memory</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-6">
+<article class="card post" id="part-6" data-kind="series">
   <h3 class="post-title">Basic TUI in a tiny harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-series/PART-6.md</code></span></p>
   
@@ -785,7 +807,7 @@ npm run tui</code></pre>
   </div>
 </article>
 
-<article class="card post" id="part-7">
+<article class="card post" id="part-7" data-kind="series">
   <h3 class="post-title">Live OpenAI-compatible guest in a tiny harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-series/PART-7.md</code></span></p>
   
@@ -859,7 +881,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="execcritic">
+<article class="card post" id="execcritic" data-kind="daily">
   <h3 class="post-title">ExecCritic daily harness draft (2026-09-17)</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-research/2026-09-17-execcritic.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.09133" target="_blank" rel="noopener">https://arxiv.org/abs/2609.09133</a></p>
@@ -881,7 +903,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="chase">
+<article class="card post" id="chase" data-kind="daily">
   <h3 class="post-title">CHASE / Bad Genius daily harness draft (2026-09-18)</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-research/2026-09-18-chase-bad-genius.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.18366" target="_blank" rel="noopener">https://arxiv.org/abs/2609.18366</a></p>
@@ -901,7 +923,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="fan">
+<article class="card post" id="fan" data-kind="daily">
   <h3 class="post-title">Fan et al. harness design daily draft (2026-09-21)</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-research/2026-09-21-fan-harness-design.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.20804" target="_blank" rel="noopener">https://arxiv.org/abs/2609.20804</a></p>
@@ -921,7 +943,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="harness-zero">
+<article class="card post" id="harness-zero" data-kind="daily">
   <h3 class="post-title">Harness-Zero daily harness draft (2026-09-22)</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-research/2026-09-22-harness-zero.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.24974" target="_blank" rel="noopener">https://arxiv.org/abs/2609.24974</a></p>
@@ -941,7 +963,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="self-healing">
+<article class="card post" id="self-healing" data-kind="daily">
   <h3 class="post-title">Self-Healing Harness daily draft (2026-09-23)</h3>
   <p class="meta-line"><span class="pill completed">live</span> <span class="muted">Source <code>article/harness-research/2026-09-23-self-healing-harness.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.24130" target="_blank" rel="noopener">https://arxiv.org/abs/2609.24130</a></p>
@@ -963,7 +985,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="clm">
+<article class="card post" id="clm" data-kind="daily">
   <h3 class="post-title">CLM daily draft (2026-10-01)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-10-01-clm/draft.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.37725" target="_blank" rel="noopener">https://arxiv.org/abs/2609.37725</a></p>
@@ -990,7 +1012,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="stitch">
+<article class="card post" id="stitch" data-kind="daily">
   <h3 class="post-title">STITCH daily draft (2026-10-03) — Shape A lite THREAD</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-10-02-stitch/draft.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.38912" target="_blank" rel="noopener">https://arxiv.org/abs/2609.38912</a></p>
@@ -1044,7 +1066,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="kv-streams">
+<article class="card post" id="kv-streams" data-kind="daily">
   <h3 class="post-title">KV-streams thread draft (2026-10-03)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-10-03-kv-streams/draft.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.35750" target="_blank" rel="noopener">https://arxiv.org/abs/2609.35750</a></p>
@@ -1077,7 +1099,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="growing">
+<article class="card post" id="growing" data-kind="daily">
   <h3 class="post-title">Growing Harness daily draft (2026-09-24)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-09-24-growing-harness.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.26760" target="_blank" rel="noopener">https://arxiv.org/abs/2609.26760</a></p>
@@ -1096,7 +1118,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="jaz">
+<article class="card post" id="jaz" data-kind="daily">
   <h3 class="post-title">JAZ / Harness as a Language daily draft (2026-09-25)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-09-25-jaz-harness-as-language.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.26891" target="_blank" rel="noopener">https://arxiv.org/abs/2609.26891</a></p>
@@ -1119,7 +1141,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="compact-docs">
+<article class="card post" id="compact-docs" data-kind="daily">
   <h3 class="post-title">Compact Documentation for Coding Agents daily draft (2026-09-28)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-09-28-compact-documentation.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.31587" target="_blank" rel="noopener">https://arxiv.org/abs/2609.31587</a></p>
@@ -1144,7 +1166,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="semnav">
+<article class="card post" id="semnav" data-kind="daily">
   <h3 class="post-title">SemNav daily draft (2026-09-29)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-09-29-semnav.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.31176" target="_blank" rel="noopener">https://arxiv.org/abs/2609.31176</a></p>
@@ -1170,7 +1192,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="mcp-errors">
+<article class="card post" id="mcp-errors" data-kind="daily">
   <h3 class="post-title">MCP error messages daily draft (2026-09-30) — teach-first + paper fact</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-09-30-mcp-error-messages.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.35381" target="_blank" rel="noopener">https://arxiv.org/abs/2609.35381</a></p>
@@ -1200,7 +1222,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="00-gpt2">
+<article class="card post" id="00-gpt2" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #01 - GPT-2 / Radford 2019 (V0 loop)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/00-gpt2.md</code></span></p>
   
@@ -1218,7 +1240,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="00b-fewshot">
+<article class="card post" id="00b-fewshot" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #02 - Brown 2020 few-shot</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/00b-fewshot.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">https://arxiv.org/abs/2005.14165</a></p>
@@ -1236,7 +1258,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="00c-cot">
+<article class="card post" id="00c-cot" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #03 - Wei 2022 Chain-of-Thought</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/00c-cot.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">https://arxiv.org/abs/2201.11903</a></p>
@@ -1254,7 +1276,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="01-toolformer">
+<article class="card post" id="01-toolformer" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/01-toolformer.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener">https://arxiv.org/abs/2302.04761</a></p>
@@ -1272,7 +1294,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="02-react">
+<article class="card post" id="02-react" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #06 - ReAct (Yao et al. 2022)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/02-react.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">https://arxiv.org/abs/2210.03629</a></p>
@@ -1290,7 +1312,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="03-intercode">
+<article class="card post" id="03-intercode" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #09 - InterCode (Yang et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/03-intercode.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2306.14898" target="_blank" rel="noopener">https://arxiv.org/abs/2306.14898</a></p>
@@ -1308,7 +1330,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="04-self-refine">
+<article class="card post" id="04-self-refine" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #07 - Self-Refine (Madaan et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/04-self-refine.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2303.17651" target="_blank" rel="noopener">https://arxiv.org/abs/2303.17651</a></p>
@@ -1326,7 +1348,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="05-reflexion">
+<article class="card post" id="05-reflexion" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #08 - Reflexion (Shinn et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/05-reflexion.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noopener">https://arxiv.org/abs/2303.11366</a></p>
@@ -1344,7 +1366,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="06-memgpt">
+<article class="card post" id="06-memgpt" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #12 - MemGPT (Packer et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/06-memgpt.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noopener">https://arxiv.org/abs/2310.08560</a></p>
@@ -1362,7 +1384,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="07-voyager">
+<article class="card post" id="07-voyager" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #11 - Voyager (Wang et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/07-voyager.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2305.16291" target="_blank" rel="noopener">https://arxiv.org/abs/2305.16291</a></p>
@@ -1380,7 +1402,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="08-measuring-long-software">
+<article class="card post" id="08-measuring-long-software" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #21 - Measuring long software tasks (METR / Kwa et al.)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/08-measuring-long-software.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">https://arxiv.org/abs/2503.14499</a></p>
@@ -1397,7 +1419,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="09-rlm">
+<article class="card post" id="09-rlm" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #13 - Recursive Language Models</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/09-rlm.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2512.24601" target="_blank" rel="noopener">https://arxiv.org/abs/2512.24601</a></p>
@@ -1415,7 +1437,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="10-multi-agent">
+<article class="card post" id="10-multi-agent" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #10 - Multi-Agent Collaboration</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/10-multi-agent.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2306.03314" target="_blank" rel="noopener">https://arxiv.org/abs/2306.03314</a></p>
@@ -1432,7 +1454,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="11-prime-agent">
+<article class="card post" id="11-prime-agent" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #19 - Prime Agent</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/11-prime-agent.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2608.23552" target="_blank" rel="noopener">https://arxiv.org/abs/2608.23552</a></p>
@@ -1449,7 +1471,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="12-webgpt">
+<article class="card post" id="12-webgpt" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #04 - WebGPT</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/12-webgpt.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2112.09332" target="_blank" rel="noopener">https://arxiv.org/abs/2112.09332</a></p>
@@ -1466,7 +1488,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="13-dspy">
+<article class="card post" id="13-dspy" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #14 - DSPy</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/13-dspy.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2310.03714" target="_blank" rel="noopener">https://arxiv.org/abs/2310.03714</a></p>
@@ -1484,7 +1506,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="14-gepa">
+<article class="card post" id="14-gepa" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #15 - GEPA</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/14-gepa.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2507.19457" target="_blank" rel="noopener">https://arxiv.org/abs/2507.19457</a></p>
@@ -1501,7 +1523,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="15a-darwin">
+<article class="card post" id="15a-darwin" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #16 - Darwin Gödel Machine</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/15a-darwin.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2505.22954" target="_blank" rel="noopener">https://arxiv.org/abs/2505.22954</a></p>
@@ -1518,7 +1540,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="15b-meta-harness">
+<article class="card post" id="15b-meta-harness" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #17 - Meta-Harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/15b-meta-harness.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noopener">https://arxiv.org/abs/2603.28052</a></p>
@@ -1535,7 +1557,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="15c-continual">
+<article class="card post" id="15c-continual" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #18 - Continual Harness</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/15c-continual.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2605.09998" target="_blank" rel="noopener">https://arxiv.org/abs/2605.09998</a></p>
@@ -1552,7 +1574,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="16-openjarvis">
+<article class="card post" id="16-openjarvis" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #20 - OpenJarvis</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/16-openjarvis.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2605.17172" target="_blank" rel="noopener">https://arxiv.org/abs/2605.17172</a></p>
@@ -1569,7 +1591,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="capscope-2609.08371-human">
+<article class="card post" id="capscope-2609.08371-human" data-kind="other">
   <h3 class="post-title">CapScope — human-voice rewrite (CEO redline before Ashish cut)</h3>
   <p class="meta-line"><span class="pill stalled">held</span> <span class="muted">Source <code>article/dair-harness-posts/capscope-2609.08371-human.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.08371" target="_blank" rel="noopener">https://arxiv.org/abs/2609.08371</a></p>
@@ -1589,7 +1611,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="capscope-2609.08371">
+<article class="card post" id="capscope-2609.08371" data-kind="other">
   <h3 class="post-title">CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/capscope-2609.08371.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.08371" target="_blank" rel="noopener">https://arxiv.org/abs/2609.08371</a></p>
@@ -1609,7 +1631,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="coding-agents-converged-2609.17394">
+<article class="card post" id="coding-agents-converged-2609.17394" data-kind="other">
   <h3 class="post-title">Coding Agents Have Converged — CEO PASS — show Ashish for cut; do not post</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/coding-agents-converged-2609.17394.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.17394" target="_blank" rel="noopener">https://arxiv.org/abs/2609.17394</a></p>
@@ -1629,7 +1651,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="harness-or-model-2609.11987">
+<article class="card post" id="harness-or-model-2609.11987" data-kind="other">
   <h3 class="post-title">Harness or Model? — CEO PASS — show Ashish for cut; do not post</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/harness-or-model-2609.11987.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.11987" target="_blank" rel="noopener">https://arxiv.org/abs/2609.11987</a></p>
@@ -1650,7 +1672,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="multi-harness-rl-2609.04518">
+<article class="card post" id="multi-harness-rl-2609.04518" data-kind="other">
   <h3 class="post-title">Multi-Harness RL — CEO PASS — show Ashish for cut; do not post</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/multi-harness-rl-2609.04518.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.04518" target="_blank" rel="noopener">https://arxiv.org/abs/2609.04518</a></p>
@@ -1669,7 +1691,7 @@ npm run live</code></pre>
   </div>
 </article>
 
-<article class="card post" id="ppt-sampling">
+<article class="card post" id="ppt-sampling" data-kind="other">
   <h3 class="post-title">PPT sampling (arXiv 2609.38104)</h3>
   <p class="meta-line"><span class="pill stalled">held</span> <span class="muted">Source <code>no draft on disk</code></span></p>
   
@@ -1692,4 +1714,47 @@ npm run live</code></pre>
 
   <footer>Path <code>plans/group-x-account.html</code> · dated 2026-10-04 · Back to <a href="BIMLABZ-PROJECT-DASHBOARD.html">main dashboard</a></footer>
 </div>
+<script>
+(function () {
+  var buttons = document.querySelectorAll(".tabs button[data-tab]");
+  var input = document.getElementById("post-search");
+  var nomatch = document.getElementById("nomatch");
+  var posts = document.querySelectorAll("article.post");
+  var tab = "all";
+
+  function visible(post, q) {
+    if (tab !== "all" && post.getAttribute("data-kind") !== tab) return false;
+    if (!q) return true;
+    var title = post.querySelector(".post-title");
+    var body = post.querySelector(".post-body");
+    var text = ((title ? title.textContent : "") + "\n" + (body ? body.textContent : "")).toLowerCase();
+    return text.indexOf(q) !== -1;
+  }
+
+  function apply() {
+    var q = (input.value || "").trim().toLowerCase();
+    var n = 0;
+    for (var i = 0; i < posts.length; i++) {
+      var post = posts[i];
+      var on = visible(post, q);
+      post.classList.toggle("is-hidden", !on);
+      var link = document.querySelector('.toc a[href="#' + post.id + '"]');
+      if (link && link.parentNode) link.parentNode.classList.toggle("is-hidden", !on);
+      if (on) n++;
+    }
+    nomatch.hidden = n !== 0;
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () {
+      tab = this.getAttribute("data-tab");
+      for (var j = 0; j < buttons.length; j++) {
+        buttons[j].setAttribute("aria-selected", buttons[j] === this ? "true" : "false");
+      }
+      apply();
+    });
+  }
+  input.addEventListener("input", apply);
+})();
+</script>
 </body></html>
