@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>DAIR Harness Eng #05 - Toolformer (Schick et al. 2023) · X Account</title>
+<title>#25 DAIR Harness Eng #05 - Toolformer (Schick et al. 2023) · X Account</title>
 <style>
 :root{--bg:#0f1419;--panel:#171d25;--panel2:#1c2430;--border:#2a3441;--text:#e8eef5;--muted:#9aa8b8;--accent:#5b9fd4;--ok:#3d9a6a;--warn:#c9a227;--bad:#c45c5c}
 *{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
@@ -46,7 +46,10 @@ h2.section{margin-top:1.75rem}
 article.post.is-hidden,.toc li.is-hidden{display:none}
 .nomatch{margin:0 0 1rem;padding:.65rem .85rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--muted)}
 
-</style></head><body>
+</style><style>.postlist{list-style:none;margin:0;padding:0}.postitem{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;gap:.8rem}.postitem:last-child{border-bottom:0}.pi-num{min-width:2.2rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}.pi-title{font-weight:600;font-size:1.02rem}.pi-meta{margin:.3rem 0;font-size:.85rem}.pi-sum{margin:.2rem 0 0;color:var(--muted);font-size:.9rem}.is-hidden{display:none!important}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.12rem .5rem;border-radius:999px;margin-right:.35rem}.b-cov{background:#1f4d36;color:#8fe0b5}.b-not{background:#4a3d12;color:#f0d77a}.b-drop{background:#4a2020;color:#f0a0a0}
+.tweet{border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;margin:.8rem 0;background:var(--panel2)}.tw-bar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-top:.5rem}.tw-bar button,.copyall{font:inherit;font-size:.8rem;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;cursor:pointer}.tw-len{font-size:.75rem;color:var(--muted)}.tw-len.over{color:var(--bad);font-weight:700}.copied{font-size:.75rem;color:var(--ok)}.tw-label{font-size:.8rem;color:var(--muted);margin:0 0 .3rem}</style>
+</head><body>
 <div class="wrap">
   <div class="topnav">
     <a class="back" href="BIMLABZ-PROJECT-DASHBOARD.html">← Main dashboard</a>
@@ -56,25 +59,61 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
     <a href="group-linkedin-jobs.html">LinkedIn Jobs</a>
     <a href="group-x-account.html">X Account</a>
   </div>
-  <p class="meta"><a href="group-x-account.html">← All X posts</a> · DAIR lesson</p>
-  <h1>DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</h1>
+  <p class="meta"><a href="group-x-account.html">← All X posts</a> · #25 · DAIR lesson</p>
+  <h1>#25 DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</h1>
+  <p><span class="badge b-not">Not covered yet</span><span class="muted">Draft status: waiting on Ashish</span></p>
+  <div class="tw-bar"><button type="button" class="copyall" data-act="all">Copy whole thread text</button> <span class="copied" aria-live="polite"></span></div>
 <article class="card post" id="01-toolformer" data-kind="dair">
   <h3 class="post-title">DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/01-toolformer.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener">https://arxiv.org/abs/2302.04761</a></p>
   
   <div class="post-body">
+<hr/>
+<div class="tweet">
 <h3>DAIR Harness Eng #05 - Toolformer (Schick et al. 2023)</h3>
 <p>Status: DRAFT - owner publishes; not auto-posted Brief: x-briefs/01-toolformer.md Citation: Schick et al. <em>Toolformer</em>. arXiv:2302.04761. DAIR #05.</p>
-<h4>Post (copy into X)</h4>
+<textarea class="tw-text" hidden>Status: DRAFT - owner publishes; not auto-posted Brief: x-briefs/01-toolformer.md Citation: Schick et al. Toolformer. arXiv:2302.04761. DAIR #05.</textarea><div class="tw-bar"><button type="button" data-act="text">Copy text</button>  <span class="tw-len">145 chars</span> <span class="copied" aria-live="polite"></span></div></div>
+<div class="tweet"><p class=tw-label>Post (copy into X)</p>
 <p>Your coding agent (the loop that gives a model tools and lets it edit a repo) needs five minus three.</p>
 <p>It keeps talking and invents &quot;2.&quot; Or worse, it invents a whole API reply. No one stopped the decode to run the calculator.</p>
 <p>Toolformer (Schick 2023) is the interrupt pattern. The model emits a call. Decoding stops at the arrow. The harness (everything between weights and the world) runs the API, pastes the result back, then decoding continues. The model never gets to invent the tool answer.</p>
 <p>Same GPT-J 6.7B guest. Math with the calculator path on: 40.4 on ASDiv. Plain GPT-J without tools: 7.5.</p>
 <p>That gap is not smarter weights. It is interrupt, execute, insert observation, resume. If your Allow button does not actually pause the model until the tool finished, Allow is cosplay.</p>
 <p><a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener">https://arxiv.org/abs/2302.04761</a></p>
-  </div>
+  <textarea class="tw-text" hidden>Your coding agent (the loop that gives a model tools and lets it edit a repo) needs five minus three.
+
+It keeps talking and invents &quot;2.&quot; Or worse, it invents a whole API reply. No one stopped the decode to run the calculator.
+
+Toolformer (Schick 2023) is the interrupt pattern. The model emits a call. Decoding stops at the arrow. The harness (everything between weights and the world) runs the API, pastes the result back, then decoding continues. The model never gets to invent the tool answer.
+
+Same GPT-J 6.7B guest. Math with the calculator path on: 40.4 on ASDiv. Plain GPT-J without tools: 7.5.
+
+That gap is not smarter weights. It is interrupt, execute, insert observation, resume. If your Allow button does not actually pause the model until the tool finished, Allow is cosplay.
+
+https://arxiv.org/abs/2302.04761</textarea><div class="tw-bar"><button type="button" data-act="text">Copy text</button>  <span class="tw-len over">812 chars (over 280)</span> <span class="copied" aria-live="polite"></span></div></div>
+</div>
 </article>
 </div>
+<script>
+(function(){
+function flash(el,msg){var s=el.parentNode.querySelector(".copied");s.textContent=msg;setTimeout(function(){s.textContent="";},1800);}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function toPng(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){var c=document.createElement("canvas");c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext("2d").drawImage(im,0,0);c.toBlob(function(b){b?res(b):rej(new Error("png"));},"image/png");};im.onerror=rej;im.src=src;});}
+function txtOf(t){return t.querySelector("textarea.tw-text").value;}
+function copyText(s){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(s);var ta=document.createElement("textarea");ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);return Promise.resolve();}
+document.addEventListener("click",function(e){var b=e.target.closest("button[data-act]");if(!b)return;var t=b.closest(".tweet");var act=b.getAttribute("data-act");
+ if(act==="all"){var all=[].map.call(document.querySelectorAll(".tweet textarea.tw-text"),function(x){return x.value;}).filter(Boolean).join("\n\n---\n\n");copyText(all).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ var text=txtOf(t),img=t.querySelector("figure img");
+ if(act==="text"){copyText(text).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ if(act==="image"){if(!img)return;toPng(img.src).then(function(p){return navigator.clipboard.write([new ClipboardItem({"image/png":p})]);}).then(function(){flash(b,"Image copied");},function(){flash(b,"Image copy not supported here");});return;}
+ if(act==="both"){
+  if(!img){copyText(text).then(function(){flash(b,"Copied");});return;}
+  if(!(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write)){t.querySelector(".tw-fallback").hidden=false;flash(b,"Use the two buttons");return;}
+  toPng(img.src).then(function(p){var h="<p>"+esc(text).replace(/\n/g,"<br>")+'</p><img src="'+img.src+'">';
+   return navigator.clipboard.write([new ClipboardItem({"text/plain":new Blob([text],{type:"text/plain"}),"text/html":new Blob([h],{type:"text/html"}),"image/png":p})]);})
+  .then(function(){flash(b,"Copied text + image");},function(){t.querySelector(".tw-fallback").hidden=false;flash(b,"Combined copy blocked: use the two buttons");});}
+});})();
+</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post) · X Account</title>
+<title>#44 CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post) · X Account</title>
 <style>
 :root{--bg:#0f1419;--panel:#171d25;--panel2:#1c2430;--border:#2a3441;--text:#e8eef5;--muted:#9aa8b8;--accent:#5b9fd4;--ok:#3d9a6a;--warn:#c9a227;--bad:#c45c5c}
 *{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
@@ -46,7 +46,10 @@ h2.section{margin-top:1.75rem}
 article.post.is-hidden,.toc li.is-hidden{display:none}
 .nomatch{margin:0 0 1rem;padding:.65rem .85rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--muted)}
 
-</style></head><body>
+</style><style>.postlist{list-style:none;margin:0;padding:0}.postitem{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;gap:.8rem}.postitem:last-child{border-bottom:0}.pi-num{min-width:2.2rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}.pi-title{font-weight:600;font-size:1.02rem}.pi-meta{margin:.3rem 0;font-size:.85rem}.pi-sum{margin:.2rem 0 0;color:var(--muted);font-size:.9rem}.is-hidden{display:none!important}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.12rem .5rem;border-radius:999px;margin-right:.35rem}.b-cov{background:#1f4d36;color:#8fe0b5}.b-not{background:#4a3d12;color:#f0d77a}.b-drop{background:#4a2020;color:#f0a0a0}
+.tweet{border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;margin:.8rem 0;background:var(--panel2)}.tw-bar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-top:.5rem}.tw-bar button,.copyall{font:inherit;font-size:.8rem;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;cursor:pointer}.tw-len{font-size:.75rem;color:var(--muted)}.tw-len.over{color:var(--bad);font-weight:700}.copied{font-size:.75rem;color:var(--ok)}.tw-label{font-size:.8rem;color:var(--muted);margin:0 0 .3rem}</style>
+</head><body>
 <div class="wrap">
   <div class="topnav">
     <a class="back" href="BIMLABZ-PROJECT-DASHBOARD.html">← Main dashboard</a>
@@ -56,17 +59,22 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
     <a href="group-linkedin-jobs.html">LinkedIn Jobs</a>
     <a href="group-x-account.html">X Account</a>
   </div>
-  <p class="meta"><a href="group-x-account.html">← All X posts</a> · Other · 2026-09-12</p>
-  <h1>CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</h1>
+  <p class="meta"><a href="group-x-account.html">← All X posts</a> · #44 · Other · 2026-09-12</p>
+  <h1>#44 CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</h1>
+  <p><span class="badge b-not">Not covered yet</span><span class="muted">Draft status: waiting on Ashish</span></p>
+  <div class="tw-bar"><button type="button" class="copyall" data-act="all">Copy whole thread text</button> <span class="copied" aria-live="polite"></span></div>
 <article class="card post" id="capscope-2609.08371" data-kind="other">
   <h3 class="post-title">CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/dair-harness-posts/capscope-2609.08371.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.08371" target="_blank" rel="noopener">https://arxiv.org/abs/2609.08371</a></p>
   
   <div class="post-body">
+<hr/>
+<div class="tweet">
 <h3>CapScope — CEO PASS define-as-you-go (cut for Ashish; do not post)</h3>
 <p>Paper: Bouras, Dai, Mechtaev — arXiv:2609.08371 Status: CEO pass 2026-09-12. Wait Ashish cut/go. Owner publishes.</p>
-<h4>Post</h4>
+<textarea class="tw-text" hidden>Paper: Bouras, Dai, Mechtaev — arXiv:2609.08371 Status: CEO pass 2026-09-12. Wait Ashish cut/go. Owner publishes.</textarea><div class="tw-bar"><button type="button" data-act="text">Copy text</button>  <span class="tw-len">113 chars</span> <span class="copied" aria-live="polite"></span></div></div>
+<div class="tweet"><p class=tw-label>Post</p>
 <p>A coding agent wraps a language model and lets it call tools: run a shell command, edit a file, read a log. Often one helper only runs tests. Another only edits code. Different jobs, different power.</p>
 <p>In this paper’s attack, the test helper reads a fake test log. Inside that log is a hidden instruction: write a private signing key (the kind of secret you use to prove a release is yours) into a source file under the project.</p>
 <p>If the test helper is allowed to edit files, it will do that write. The secret is now in the repo. That is the failure.</p>
@@ -75,8 +83,43 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
 <p>with open permissions: the bad write succeeded 47 times with CapScope: 3 times</p>
 <p>The model still often asked for the bad write. The list outside the chat stopped most of them. If every path the model names is allowed, a malicious line inside a tool result can own your disk.</p>
 <p><a href="https://arxiv.org/abs/2609.08371" target="_blank" rel="noopener">https://arxiv.org/abs/2609.08371</a></p>
-  </div>
+  <textarea class="tw-text" hidden>A coding agent wraps a language model and lets it call tools: run a shell command, edit a file, read a log. Often one helper only runs tests. Another only edits code. Different jobs, different power.
+
+In this paper’s attack, the test helper reads a fake test log. Inside that log is a hidden instruction: write a private signing key (the kind of secret you use to prove a release is yours) into a source file under the project.
+
+If the test helper is allowed to edit files, it will do that write. The secret is now in the repo. That is the failure.
+
+The paper’s system (they call it CapScope) does not trust the chat to decide what is allowed. For each helper it keeps a short list of allowed actions. Before any tool runs, the harness (the code around the model) checks that list. Test helper: run tests, yes. Edit source, no. So the write is blocked even if the model asks for it.
+
+They used the same language model every time and repeated the setup 75 times.
+
+with open permissions: the bad write succeeded 47 times with CapScope: 3 times
+
+The model still often asked for the bad write. The list outside the chat stopped most of them. If every path the model names is allowed, a malicious line inside a tool result can own your disk.
+
+https://arxiv.org/abs/2609.08371</textarea><div class="tw-bar"><button type="button" data-act="text">Copy text</button>  <span class="tw-len over">1261 chars (over 280)</span> <span class="copied" aria-live="polite"></span></div></div>
+</div>
 </article>
 </div>
+<script>
+(function(){
+function flash(el,msg){var s=el.parentNode.querySelector(".copied");s.textContent=msg;setTimeout(function(){s.textContent="";},1800);}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function toPng(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){var c=document.createElement("canvas");c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext("2d").drawImage(im,0,0);c.toBlob(function(b){b?res(b):rej(new Error("png"));},"image/png");};im.onerror=rej;im.src=src;});}
+function txtOf(t){return t.querySelector("textarea.tw-text").value;}
+function copyText(s){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(s);var ta=document.createElement("textarea");ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);return Promise.resolve();}
+document.addEventListener("click",function(e){var b=e.target.closest("button[data-act]");if(!b)return;var t=b.closest(".tweet");var act=b.getAttribute("data-act");
+ if(act==="all"){var all=[].map.call(document.querySelectorAll(".tweet textarea.tw-text"),function(x){return x.value;}).filter(Boolean).join("\n\n---\n\n");copyText(all).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ var text=txtOf(t),img=t.querySelector("figure img");
+ if(act==="text"){copyText(text).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ if(act==="image"){if(!img)return;toPng(img.src).then(function(p){return navigator.clipboard.write([new ClipboardItem({"image/png":p})]);}).then(function(){flash(b,"Image copied");},function(){flash(b,"Image copy not supported here");});return;}
+ if(act==="both"){
+  if(!img){copyText(text).then(function(){flash(b,"Copied");});return;}
+  if(!(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write)){t.querySelector(".tw-fallback").hidden=false;flash(b,"Use the two buttons");return;}
+  toPng(img.src).then(function(p){var h="<p>"+esc(text).replace(/\n/g,"<br>")+'</p><img src="'+img.src+'">';
+   return navigator.clipboard.write([new ClipboardItem({"text/plain":new Blob([text],{type:"text/plain"}),"text/html":new Blob([h],{type:"text/html"}),"image/png":p})]);})
+  .then(function(){flash(b,"Copied text + image");},function(){t.querySelector(".tw-fallback").hidden=false;flash(b,"Combined copy blocked: use the two buttons");});}
+});})();
+</script>
 </body>
 </html>

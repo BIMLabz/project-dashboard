@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>KV-streams thread draft (2026-10-03) · X Account</title>
+<title>#18 KV-streams thread draft (2026-10-03) · X Account</title>
 <style>
 :root{--bg:#0f1419;--panel:#171d25;--panel2:#1c2430;--border:#2a3441;--text:#e8eef5;--muted:#9aa8b8;--accent:#5b9fd4;--ok:#3d9a6a;--warn:#c9a227;--bad:#c45c5c}
 *{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
@@ -46,7 +46,10 @@ h2.section{margin-top:1.75rem}
 article.post.is-hidden,.toc li.is-hidden{display:none}
 .nomatch{margin:0 0 1rem;padding:.65rem .85rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--muted)}
 
-</style></head><body>
+</style><style>.postlist{list-style:none;margin:0;padding:0}.postitem{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;gap:.8rem}.postitem:last-child{border-bottom:0}.pi-num{min-width:2.2rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}.pi-title{font-weight:600;font-size:1.02rem}.pi-meta{margin:.3rem 0;font-size:.85rem}.pi-sum{margin:.2rem 0 0;color:var(--muted);font-size:.9rem}.is-hidden{display:none!important}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.12rem .5rem;border-radius:999px;margin-right:.35rem}.b-cov{background:#1f4d36;color:#8fe0b5}.b-not{background:#4a3d12;color:#f0d77a}.b-drop{background:#4a2020;color:#f0a0a0}
+.tweet{border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;margin:.8rem 0;background:var(--panel2)}.tw-bar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-top:.5rem}.tw-bar button,.copyall{font:inherit;font-size:.8rem;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;cursor:pointer}.tw-len{font-size:.75rem;color:var(--muted)}.tw-len.over{color:var(--bad);font-weight:700}.copied{font-size:.75rem;color:var(--ok)}.tw-label{font-size:.8rem;color:var(--muted);margin:0 0 .3rem}</style>
+</head><body>
 <div class="wrap">
   <div class="topnav">
     <a class="back" href="BIMLABZ-PROJECT-DASHBOARD.html">← Main dashboard</a>
@@ -56,19 +59,23 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
     <a href="group-linkedin-jobs.html">LinkedIn Jobs</a>
     <a href="group-x-account.html">X Account</a>
   </div>
-  <p class="meta"><a href="group-x-account.html">← All X posts</a> · Daily paper · 2026-10-03</p>
-  <h1>KV-streams thread draft (2026-10-03)</h1>
+  <p class="meta"><a href="group-x-account.html">← All X posts</a> · #18 · Daily paper · 2026-10-03</p>
+  <h1>#18 KV-streams thread draft (2026-10-03)</h1>
+  <p><span class="badge b-drop">Dropped</span><span class="muted">Dropped by Ashish on 15 Oct 2026</span></p>
+  <div class="tw-bar"><button type="button" class="copyall" data-act="all">Copy whole thread text</button> <span class="copied" aria-live="polite"></span></div>
 <article class="card post" id="kv-streams" data-kind="daily">
   <h3 class="post-title">KV-streams thread draft (2026-10-03)</h3>
   <p class="meta-line"><span class="pill pending">waiting on Ashish</span> <span class="muted">Source <code>article/harness-research/2026-10-03-kv-streams/draft.md</code></span></p>
   <p class="meta-line"><a href="https://arxiv.org/abs/2609.35750" target="_blank" rel="noopener">https://arxiv.org/abs/2609.35750</a></p>
   
   <div class="post-body">
+
 <h3>KV-streams thread draft (2026-10-03)</h3>
 <p>Status: CEO PASS-with-patches applied (2026-10-03). Hold publish. Ashish cut next. Owner publishes.</p>
 <p>Paper URL: <a href="https://arxiv.org/abs/2609.35750" target="_blank" rel="noopener">https://arxiv.org/abs/2609.35750</a> Version: arXiv 2609.35750 v2, 29 Sep 2026 Code (not the closing link): <a href="https://github.com/Emilianopp/KV-streams" target="_blank" rel="noopener">https://github.com/Emilianopp/KV-streams</a> Account: Ashish Pisey (@BuiltinMind) Do not post. Do not message the CEO. Do not message Ashish.</p>
 <p>Fan and STITCH are not named in the beats. Fan edits which tool dumps the harness still shows. That contrast is real, and it would open a second story. Compact Docs is the dock: it compacts instructions, not the attention cache.</p>
 <hr/>
+<div class="tweet">
 <p>1 You keep every old tool dump in the chat so a later turn can still see it. One long trace then owns the graphics chip, and the runs behind it stall.</p>
 <p>2 The harness is the small runtime around the model: tools, history, and the rule for what stays in the prompt. Compaction is that shrink. You drop old turns, or swap them for a short summary, so the prompt stops growing. Compact Docs is a different cut: it shrinks the written instructions. This one leaves the writing alone and shrinks the cache, the keys and values the model already computed.</p>
 <p>3 The usual way to train that shrink is re-prefill. Copy the kept tokens into a new trace and run them through the model again. That second pass is a prefill. It rebuilds the keys and values, the attention cache, for text the model already computed.</p>
@@ -86,10 +93,54 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
 <p>11 I would not treat this as settled. SWE-bench and TextWorld are one training seed, and only two of the four rules are run on SWE-bench. Early in training, compaction can still lose to the full chat. The stable recipe deletes whole turns. Evicting arbitrary tokens produced broken text until a supervised warm-start. No dollar cost is reported. The abstract says 2.6 to 5× and three strategies. The body studies four. The conclusion says up to 3×. Those are not one speedup.</p>
 <p>12 If the harness already throws old turns away, stop paying to recompute the tokens you kept. <a href="https://arxiv.org/abs/2609.35750" target="_blank" rel="noopener">https://arxiv.org/abs/2609.35750</a></p>
 <hr/>
-<h4>Self-score</h4>
+<textarea class="tw-text" hidden>1 You keep every old tool dump in the chat so a later turn can still see it. One long trace then owns the graphics chip, and the runs behind it stall.
+
+2 The harness is the small runtime around the model: tools, history, and the rule for what stays in the prompt. Compaction is that shrink. You drop old turns, or swap them for a short summary, so the prompt stops growing. Compact Docs is a different cut: it shrinks the written instructions. This one leaves the writing alone and shrinks the cache, the keys and values the model already computed.
+
+3 The usual way to train that shrink is re-prefill. Copy the kept tokens into a new trace and run them through the model again. That second pass is a prefill. It rebuilds the keys and values, the attention cache, for text the model already computed.
+
+4 KV-streams deletes the dropped entries inside the inference engine, the server writing the trace, and carries the surviving keys and values forward. A mask on the trainer blocks attention to the deleted text, so those tokens are not run again. Repeated prefill goes to zero.
+
+5 They do not invent the keep-or-drop rule. Summary replaces old turns with a short recap. Markovian Thinker drops half and keeps the recent half. Markovian Pick lets the model choose which turns stay. Sliding Window keeps almost everything.
+
+6 Reinforcement learning here means the model practices the task and gets a score, not a supervised copy of the right answer. Text games use Qwen3-4B-Instruct-2507. On TextWorld, KV-streams reaches re-prefill&#x27;s final score with 3.7× to 11.3× fewer GPU-hours. GPU-hours are chip-hours, not a dollar cost.
+
+7 ALFWorld is the household text game, and the traces are shorter, so the recompute tax is smaller. Results put the throughput gain at 1.3× to 3.0×. The introduction separately says 5× on TextWorld and 1.3× on ALFWorld. Those are not the GPU-hour span above.
+
+8 SWE-bench Verified is 500 Python bug-fix tasks. Pass rate is the share solved. The summary is what the agent can still read. The cache is what it can still remember. Delete old turns, keep the keys. On Qwen3.5-4B, trained once, then scored three times on the last saved model, Sliding-Window KV-streams is 52.7±2.1% and full context is 51.5±1.2%. The score stays inside the noise while the peak shows up in about 20 hours instead of more than 65.
+
+9 Re-prefill Markovian Thinker on that benchmark is 53.4±0.2%. The KV-streams version of that same rule peaks in about 32 hours, against about 60 hours for re-prefill. The paper calls the full-context gap 3× and this re-prefill gap about 2×. The curves run to 200 training updates.
+
+10 The kept cache can still hold a fact after the sentence is gone. Figure 8 assigns a fruit, deletes that turn, and asks again. A harder case assigns a television that is not on the answer list. Earlier work, MEMENTO, needed a first stage of copying correct answers before this memory showed up. Here practice-and-score alone was enough. On Figure 7B, once those copying hours are counted, practice alone is as good or better. No numeric gap is printed. The task is a toy, not a code repository.
+
+11 I would not treat this as settled. SWE-bench and TextWorld are one training seed, and only two of the four rules are run on SWE-bench. Early in training, compaction can still lose to the full chat. The stable recipe deletes whole turns. Evicting arbitrary tokens produced broken text until a supervised warm-start. No dollar cost is reported. The abstract says 2.6 to 5× and three strategies. The body studies four. The conclusion says up to 3×. Those are not one speedup.
+
+12 If the harness already throws old turns away, stop paying to recompute the tokens you kept. https://arxiv.org/abs/2609.35750</textarea><div class="tw-bar"><button type="button" data-act="both">Copy text + image</button> <span class="tw-fallback" hidden><button type="button" data-act="text">Copy text</button> <button type="button" data-act="image">Copy image</button></span> <span class="tw-len over">3713 chars (over 280)</span> <span class="copied" aria-live="polite"></span></div></div>
+<div class="tweet"><p class=tw-label>Self-score</p>
 <ul><li>job-first open: pass</li><li>define-as-you-go: pass</li><li>spoken check: pass</li><li>one scene: pass</li><li>one punch: pass</li><li>one story: pass</li><li>close with takeaway+link: pass</li><li>paper terms after the job: pass</li><li>no number-first: pass</li><li>owner publishes: pass</li></ul>
-  </div>
+  <textarea class="tw-text" hidden></textarea><div class="tw-bar"><button type="button" data-act="text">Copy text</button>   <span class="copied" aria-live="polite"></span></div></div>
+</div>
 </article>
 </div>
+<script>
+(function(){
+function flash(el,msg){var s=el.parentNode.querySelector(".copied");s.textContent=msg;setTimeout(function(){s.textContent="";},1800);}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function toPng(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){var c=document.createElement("canvas");c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext("2d").drawImage(im,0,0);c.toBlob(function(b){b?res(b):rej(new Error("png"));},"image/png");};im.onerror=rej;im.src=src;});}
+function txtOf(t){return t.querySelector("textarea.tw-text").value;}
+function copyText(s){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(s);var ta=document.createElement("textarea");ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);return Promise.resolve();}
+document.addEventListener("click",function(e){var b=e.target.closest("button[data-act]");if(!b)return;var t=b.closest(".tweet");var act=b.getAttribute("data-act");
+ if(act==="all"){var all=[].map.call(document.querySelectorAll(".tweet textarea.tw-text"),function(x){return x.value;}).filter(Boolean).join("\n\n---\n\n");copyText(all).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ var text=txtOf(t),img=t.querySelector("figure img");
+ if(act==="text"){copyText(text).then(function(){flash(b,"Copied");},function(){flash(b,"Copy failed");});return;}
+ if(act==="image"){if(!img)return;toPng(img.src).then(function(p){return navigator.clipboard.write([new ClipboardItem({"image/png":p})]);}).then(function(){flash(b,"Image copied");},function(){flash(b,"Image copy not supported here");});return;}
+ if(act==="both"){
+  if(!img){copyText(text).then(function(){flash(b,"Copied");});return;}
+  if(!(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write)){t.querySelector(".tw-fallback").hidden=false;flash(b,"Use the two buttons");return;}
+  toPng(img.src).then(function(p){var h="<p>"+esc(text).replace(/\n/g,"<br>")+'</p><img src="'+img.src+'">';
+   return navigator.clipboard.write([new ClipboardItem({"text/plain":new Blob([text],{type:"text/plain"}),"text/html":new Blob([h],{type:"text/html"}),"image/png":p})]);})
+  .then(function(){flash(b,"Copied text + image");},function(){t.querySelector(".tw-fallback").hidden=false;flash(b,"Combined copy blocked: use the two buttons");});}
+});})();
+</script>
 </body>
 </html>
