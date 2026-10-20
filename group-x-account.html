@@ -86,7 +86,7 @@ article.post.is-hidden,.toc li.is-hidden{display:none}
   </div>
   <p id="nomatch" class="nomatch" hidden>No posts match.</p>
 
-  <div class="card"><strong>Coverage order.</strong> Numbers are global and fixed: covered posts first in publish order, then everything not yet covered in the order it was added. New posts are appended at the end and covered in number order. <br/><span class="badge b-cov">Covered</span> published on @BuiltinMind (15) · <span class="badge b-not">Not covered yet</span> (32) · <span class="badge b-drop">Dropped</span> (3)</div>
+  <div class="card"><strong>Coverage order.</strong> Numbers are global and fixed: covered posts first in publish order, then everything not yet covered in the order it was added. New posts are appended at the end and covered in number order. <br/><span class="badge b-cov">Covered</span> published on @BuiltinMind (15) · <span class="badge b-not">Not covered yet</span> (34) · <span class="badge b-drop">Dropped</span> (3)</div>
 <h2>Posts</h2>
 <div class="card"><ol class="postlist">
 <li class="postitem" data-kind="series" data-text="build a tiny coding-agent harness from scratch - part 1 ask a coding agent to create a file called hello.txt with the two letters ok inside, and it will usually tell you, cheerfully, that it did. then you open the folder. sometimes the file is there. sometimes it holds the wrong text. sometimes it never existed, and the only thing that happened was a confident sentence.
@@ -1158,6 +1158,138 @@ what i still can&#x27;t answer: an assistant that can reopen files might recover
 paper: https://arxiv.org/abs/2610.21073"><span class="pi-num">50</span><div><a class="pi-title" href="x-post-skip-compressor.html">Skip the Compressor daily thread (2026-10-16)</a><div class="pi-meta"><span class="badge b-not">Not covered yet</span><span class="muted">Daily paper · 2026-10-16 · Draft status: waiting on Ashish</span></div><p class="pi-sum">A new paper from UIUC asks a simple question: when an AI coding assistant fixes a bug, which of your code should it get to read?
 
 It can&#x27;t read a whole project at once. So people shrink the code first. This paper found a…</p></div></li>
+<li class="postitem" data-kind="daily" data-text="deskcheck daily thread (2026-10-19) a new paper from uiuc found that ai coding assistants fix more real bugs when the code around the model makes them trace, step by step, what a piece of code will do before they edit it, submit it, or test it.
+
+programmers call this desk checking: you walk through code with a sample input in your head, without running it. the authors named their version deskcheck. quick terms.
+
+coding assistant = an ai model that reads a code project, edits files and runs commands to fix a problem.
+harness = the code around the model: its instructions, its tools, and the order of its steps.
+patch = the edit that fixes the bug.
+test = a small program that runs the code and checks the answer.
+hidden test = a test the assistant never sees, used only for grading.
+token = a word or piece of a word. models are billed by tokens. they started by reading 7,955 recorded attempts from six existing assistants on real github bugs.
+
+the models already trace code on their own in about two out of three attempts. attempts with tracing fixed the bug 69.8% of the time, against 50.8% without. that shows the two go together, which is weaker than proof. and the tracing happens at random moments.
+
+here is a miss. claude code (anthropic&#x27;s coding assistant) read a bug report that hinted at code looping over settings. it tested the 7 helper functions that loop. the 8th helper crashes in a different way, and that is the one the hidden test checks. what deskcheck does: it makes tracing a required part of five fixed steps. each step runs as its own helper that starts with a clean slate, so notes from one step don&#x27;t clutter the next.
+
+1. read the project. no edits allowed.
+2. find where to edit. map which functions call which, pick likely paths, invent an input, trace it.
+3. write a fix, then trace the fix on sample inputs. if the result is wrong, revise.
+4. list every requirement in the bug report and trace the fix against each one.
+5. write down unusual inputs and the answer each should give. turn them into real tests and run them. step 3 in action. the bug report says a function must raise an error when it is called from the parent process instead of a worker process. (a process is one running copy of a program.) the first fix raised the error in a different case.
+
+a real test for this needs two running processes. the plain assistant spent 14 steps trying to set one up, gave up, and submitted the fix untested. it passed 2 of 5 hidden tests.
+
+deskcheck traced the fix by hand, saw the error would never be raised, and changed the condition. 5 of 5. the test: 731 real bugs from swe-bench pro, a public set in python, go, javascript and typescript. hidden tests decide if a bug is fixed.
+
+same model, plain assistant vs deskcheck built on top of it:
+
+minimax-m3: 54.72% → 65.25%
+gpt-5.6-luna: 53.08% → 59.37%
+claude haiku-4.5: 42.82% → 51.16%
+
+that is about 6 to 11 more bugs fixed per 100, for 2 to 28 cents more per bug.
+
+the first two compare against mini-swe-agent, a small open-source assistant. claude code has no official setup for this benchmark, so for the third the authors built a simple find, fix, test loop around it. could the gain be luck? models give different answers on each run.
+
+they took the bugs only deskcheck fixed (97, 49 and 74 per model) and ran the plain assistants twice more on them. the plain assistants fixed 16, 7 and 14 of those in at least one retry. most of the gap held. which step matters most? they switched tracing on one step at a time, on 100 bugs with minimax-m3.
+
+53% → 56% → 58% → 61% → 68%
+
+the biggest jump came last, from the test step: listing inputs and expected answers before writing tests.
+
+with tracing off everywhere, the five separate helpers scored 53%, the same as the plain assistant. so splitting the work into helpers added nothing by itself. the gain came from the tracing. what a better test looks like. the bug: a function that decides whether a store item is something other than a book. the plain assistant tested &quot;dvd&quot; and &quot;paperback&quot;.
+
+the hidden tests also tried lowercase &quot;dvd&quot; and a two-word item, &quot;audio cassette&quot;. deskcheck&#x27;s list of inputs covered lowercase and two-word items, plus empty and missing inputs. it caught its own bug on the first run and fixed it. this builds on execcritic, a paper we covered in september. it found that weak tests make a fixer worse: 61.2% of bugs fixed with no tests, 57.3% with tests written by the same open model before training. its answer was to train a separate test writer.
+
+deskcheck goes after the same weak spot with no training and the same model: make it write down inputs and expected answers before it writes the test.
+
+step 4 also echoes specguard, where one ai reads only the task and writes down what the code must do. deskcheck does that in a clean helper, then traces the fix against each requirement. limits they say themselves. one benchmark, bug fixing only, and results may not carry over to other assistants or newer models. the one-step-at-a-time test used 100 bugs and one model.
+
+the hidden tests also reject some correct fixes. people checked 234 bugs that both assistants failed and judged 94 and 96 of those fixes correct anyway. most were in go, where tests can call helper names that only the official fix uses. so small gaps between methods are shaky. what i still can&#x27;t tell: how often the model&#x27;s hand trace is actually right. a wrong trace that still leads to a good fix would look the same in these numbers. the authors list checking the traces as future work.
+
+if you build coding assistants: before your assistant writes a test, have it write down the inputs and the answers it expects.
+
+paper: https://arxiv.org/abs/2610.23782"><span class="pi-num">51</span><div><a class="pi-title" href="x-post-deskcheck.html">DeskCheck daily thread (2026-10-19)</a><div class="pi-meta"><span class="badge b-not">Not covered yet</span><span class="muted">Daily paper · 2026-10-19 · Draft status: waiting on Ashish</span></div><p class="pi-sum">A new paper from UIUC found that AI coding assistants fix more real bugs when the code around the model makes them trace, step by step, what a piece of code will do before they edit it, submit it, or test it.
+
+Programmer…</p></div></li>
+<li class="postitem" data-kind="daily" data-text="swe-residual daily thread (2026-10-20) a new paper from the university of hong kong and tencent found that ai coding assistants do far worse when they pick up a task another assistant already worked on and called done.
+
+same assistant. same task. same grading tests.
+
+the only change is the code it starts from. quick terms.
+
+coding assistant = an ai model that reads a code project, edits files and runs commands to finish a task.
+harness = the code around the model: its instructions, its tools, and the order of its steps.
+test = a small program that runs the code and checks the answer.
+hidden test = a test the assistant never sees, used only for grading.
+handoff = one assistant or person stops, and another picks up the same work.
+percentage point = the plain difference between two percentages. 70% to 20% is a drop of 50 points. why test this? real work gets handed over all the time.
+
+you come back in a new session to something an assistant said was finished. or one assistant builds on what another one submitted. test sets for coding assistants almost always start from clean code.
+
+so the authors made leftover code on purpose. three cheaper open models (from deepseek, qwen and glm) tried tasks from two public test sets, deepswe and terminal-bench. they kept only attempts where the model said &quot;done&quot; and the hidden tests still failed. two people reviewed each one.
+
+that gave 198 leftover starting points from 111 tasks. the next assistant gets only the original request and the leftover code.
+
+no note. no history of the earlier attempt. no sign that it failed.
+
+and the leftover code looks finished. on the bigger test set (real code projects), the typical leftover state already passes 98.4% of the hidden tests. about half have only 1 to 3 tests still failing. the numbers. same model, same harness, same task. clean start vs leftover start, on real code projects:
+
+gemini-3.8-flash: 72.2% → 20.0%
+glm-5.3-flash: 68.9% → 15.4%
+gpt-6-sol: 65.6% → 33.5%
+kimi-k2.8-preview: 57.8% → 13.0%
+qwen-3.8-flash: 51.1% → 30.6%
+
+a drop of 20.6 to 53.5 points.
+
+on the second set, tasks done through the command line on a whole machine, the drop is 20.6 to 34.9 points. maybe the leftover tasks were just the hard ones?
+
+they checked. they took only the tasks each assistant solves from clean code. from the leftover code, the same assistant then failed most of them:
+
+gemini-3.8-flash: 75.4% failed
+glm-5.3-flash: 79.0% failed
+qwen-3.8-flash: 63.4% failed
+
+these are tasks the same assistant solved from clean code. so what goes wrong? the assistants do look at the earlier work. every run checked what had changed. then they kept working inside it.
+
+failed runs kept 86% to 99% of the lines the earlier model wrote.
+
+throwing it all away and starting over was always allowed. no run on the code projects did that.
+
+in 59% to 88% of failed runs, exactly the same hidden tests failed at the end as at the start.
+
+the authors call this acceptance bias: the assistant treats the earlier work as the definition of what is left to do, and stops checking it against the request. the clearest sign is the files the earlier attempt never touched.
+
+some tasks need a change in a file the earlier model skipped. from clean code, the assistants change those files in 40.5% to 47.9% of runs. from leftover code, in 6.7% to 15.0%.
+
+they open those files in 38% to 64% of runs. they just leave them alone. one run shows it plainly.
+
+gemini-3.8-flash, on a go project. the leftover code fails 11 hidden tests. the same assistant passes all 11 when it starts from clean code.
+
+from the leftover code it looked at the changes, ran the project&#x27;s own tests (all passed), and submitted after 43 steps without changing a single file.
+
+its last message: &quot;i have implemented the requested encryption package.&quot;
+
+the real fix needed a file the earlier model never touched. gpt-6-sol fails differently. in 11 of 30 sampled failed runs, it named what was wrong with the earlier work and tried to fix it. the other assistants did that in at most 2 of 30.
+
+it still dropped 32 points.
+
+spotting the problem helps. fixing someone else&#x27;s half-right code is a second skill. this builds on execcritic, a paper we covered earlier. its example: an assistant patches one path, writes a test for that path, sees it pass, and stops. it stopped because the same run wrote both the fix and the test.
+
+swe-residual shows the same stop across a handoff. a different model wrote the work, and the next assistant still took passing checks and finished-looking code as done.
+
+it also flips fixedbench (gloaguen et al.). there, when a bug was already fixed, assistants still changed code in 35% to 65% of cases. here, when work only looks done, they change too little. either way they read the state of the code and skip checking it against the request. limits. 198 leftover states, 111 tasks, two test sets. the command-line set covers only 21 tasks. all earlier work came from three open-model families, none from people. the detailed behavior numbers come from the code-project set only.
+
+what i still can&#x27;t tell: would one line in the instructions, &quot;check the existing work against the request first&quot;, close much of the gap? the paper measures the problem and tests no fix.
+
+if your harness resumes old sessions or passes work between assistants: make the next one check the earlier work against the original request before it builds on it. and treat &quot;the project&#x27;s tests pass&quot; as weak proof.
+
+paper: https://arxiv.org/abs/2610.25899"><span class="pi-num">52</span><div><a class="pi-title" href="x-post-swe-residual.html">SWE-Residual daily thread (2026-10-20)</a><div class="pi-meta"><span class="badge b-not">Not covered yet</span><span class="muted">Daily paper · 2026-10-20 · Draft status: waiting on Ashish</span></div><p class="pi-sum">A new paper from the University of Hong Kong and Tencent found that AI coding assistants do far worse when they pick up a task another assistant already worked on and called done.
+
+Same assistant. Same task. Same grading…</p></div></li>
 </ol></div>
 
 
